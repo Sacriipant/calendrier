@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
+
     public static int inputMonth() {
         Scanner scan = new Scanner(System.in);
         System.out.print("introduisez le mois : ");
@@ -41,7 +42,6 @@ public class Main {
         return (q + ( ((m+1)*13) / 5) + k + (k/4) + (j/4) + (5*j) ) % 7;
     }
 
-
     public static void emptySlot(int firstDay) {
         int[] spaceArray = {5,6,0,1,2,3,4};
         String space = "   ";
@@ -51,6 +51,7 @@ public class Main {
             System.out.print(betweenSpace);
         }
     }
+
     public static int monthSize(int month,boolean bissextiles) {
         int res = 0;
         int[] monthtrenteun = {1,3,5,7,8,10,12};
@@ -89,7 +90,6 @@ public class Main {
         }
         System.out.println();
     }
-
 
     public static void main(String[] args) {
         int intMonth = inputMonth();
