@@ -41,23 +41,6 @@ public class Main {
         return (q + ( ((m+1)*13) / 5) + k + (k/4) + (j/4) + (5*j) ) % 7;
     }
 
-    public static void printDates(int firstDay,int monthSize) {
-        int j = firstDay;
-        for (int i = 1; i <= monthSize;++i){
-            if(j == 2) {
-                System.out.println();
-            }
-            if(i<10){
-                System.out.print("0"+ i + "  ");
-            }
-            else System.out.print(i + "  ");
-            ++j;
-            if (j == 7){
-                j = 0;
-            }
-        }
-        System.out.println();
-    }
 
     public static void emptySlot(int firstDay) {
         int[] spaceArray = {5,6,0,1,2,3,4};
@@ -68,7 +51,6 @@ public class Main {
             System.out.print(betweenSpace);
         }
     }
-
     public static int monthSize(int month,boolean bissextiles) {
         int res = 0;
         int[] monthtrenteun = {1,3,5,7,8,10,12};
@@ -88,6 +70,24 @@ public class Main {
         if (month == 2 && bissextiles) res = 29;
         else if (month == 2) res = 28;
         return res;
+    }
+
+    public static void printDates(int firstDay,int monthSize) {
+        int j = firstDay;
+        for (int i = 1; i <= monthSize;++i){
+            if(j == 2) {
+                System.out.println();
+            }
+            if(i<10){
+                System.out.print("0"+ i + "  ");
+            }
+            else System.out.print(i + "  ");
+            ++j;
+            if (j == 7){
+                j = 0;
+            }
+        }
+        System.out.println();
     }
 
 
