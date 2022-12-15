@@ -95,7 +95,6 @@ public class Main {
         int intMonth = inputMonth();
         int year = inputYear();
         int firstday = firstDay(intMonth,year);
-        System.out.println(firstday);
         boolean bissextiles = ( ( (year % 4 == 0) && (year % 100 != 0) ) ^ (year % 400 == 0) ) ;
         System.out.println();
         int monthsize = monthSize(intMonth,bissextiles);
