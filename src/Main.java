@@ -29,14 +29,16 @@ public class Main {
     }
 
     public static int firstDay(int month,int year) {
-      int q = 1;
-      int j = year/100;
-      int k = year%100;
-      int m;
-      if (month == 1) m = 13;
-        else if (month == 2) m = 14;
-            else m = month;
-      return (q + ( ((m+1)*13) / 5) + k + (k/4) + (j/4) + (5*j) ) % 7;
+        int yr = year;
+        if (month == 1 || month == 2) yr = year-1;
+        int q = 1;
+        int j = yr/100;
+        int k = yr%100;
+        int m;
+        if (month == 1) m = 13;
+            else if (month == 2) m = 14;
+                else m = month;
+        return (q + ( ((m+1)*13) / 5) + k + (k/4) + (j/4) + (5*j) ) % 7;
     }
 
     public static void printDates(int firstDay,int monthSize) {
@@ -93,6 +95,7 @@ public class Main {
         int intMonth = inputMonth();
         int year = inputYear();
         int firstday = firstDay(intMonth,year);
+        System.out.println(firstday);
         boolean bissextiles = ( ( (year % 4 == 0) && (year % 100 != 0) ) ^ (year % 400 == 0) ) ;
         System.out.println();
         int monthsize = monthSize(intMonth,bissextiles);
