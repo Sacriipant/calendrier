@@ -99,14 +99,14 @@ public class Main {
         System.out.println();
         int monthsize = monthSize(intMonth,bissextiles);
         String stringMonth = stringMonth(intMonth);
-
+    //entête
         line();
         System.out.printf(stringMonth +" "+ year);
         System.out.println();
         line();
-
+    //jr de la semaine
         printDays();
-
+    //dates
         emptySlot(firstday);
         printDates(firstday,monthsize);
         line();
