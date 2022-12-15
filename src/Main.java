@@ -39,19 +39,9 @@ public class Main {
       return (q + ( ((m+1)*13) / 5) + k + (k/4) + (j/4) + (5*j) ) % 7;
     }
 
-    public static void printEmptyDates(int firstDay, int month, boolean bissextiles) {
-        int[] spaceArray = {5,6,0,1,2,3,4};
+    public static void printDates(int firstDay,int monthSize) {
         int j = firstDay;
-        int monthSize = monthSize(month,bissextiles);
-        String space = "   ";
-        String betweenSpace = " ";
-        for (int i = 0; i < spaceArray[firstDay];++i){
-            System.out.print(space);
-            System.out.print(betweenSpace);
-        }
-
-        //ajout conditions pour années bissextiles , 31 /30
-        for (int i = 1; i <= 31;++i){
+        for (int i = 1; i <= monthSize;++i){
             if(j == 2) {
                 System.out.println();
             }
@@ -67,30 +57,56 @@ public class Main {
         System.out.println();
     }
 
+    public static void emptySlot(int firstDay) {
+        int[] spaceArray = {5,6,0,1,2,3,4};
+        String space = "   ";
+        String betweenSpace = " ";
+        for (int i = 0; i < spaceArray[firstDay];++i){
+            System.out.print(space);
+            System.out.print(betweenSpace);
+        }
+    }
+
     public static int monthSize(int month,boolean bissextiles) {
         int res = 0;
+        int[] monthtrenteun = {1,3,5,7,8,10,12};
+        int[] monthtrente = {4,6,9,11};
+        for (int i = 0; i <= 6 ; ++i){
+            if (month == monthtrenteun[i]) {
+                res = 31;
+                break;
+            }
+        }
+        for (int i = 0; i <= 3 ; ++i){
+            if (month == monthtrente[i]) {
+                res = 30;
+                break;
+            }
+        }
         if (month == 2 && bissextiles) res = 29;
         else if (month == 2) res = 28;
-        int[] monthArray = {1,3,5,7,8,10,12};
-        for (int i = 0; i <= 6 ; ++i){
-            if (month == monthArray[i])res = 31;
-            else res = 30;
-        }
         return res;
     }
 
 
     public static void main(String[] args) {
         int intMonth = inputMonth();
-        boolean bissextiles = intMonth % 400 == 0;
-        String stringMonth = stringMonth(intMonth);
         int year = inputYear();
+        int firstday = firstDay(intMonth,year);
+        boolean bissextiles = ( ( (year % 4 == 0) && (year % 100 != 0) ) ^ (year % 400 == 0) ) ;
+        System.out.println();
+        int monthsize = monthSize(intMonth,bissextiles);
+        String stringMonth = stringMonth(intMonth);
+
         line();
         System.out.printf(stringMonth +" "+ year);
         System.out.println();
         line();
+
         printDays();
-        printEmptyDates(firstDay(intMonth,year),intMonth,bissextiles);
+
+        emptySlot(firstday);
+        printDates(firstday,monthsize);
         line();
     }
 }
